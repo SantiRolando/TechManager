@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');//Duenio de la PC
+            $table->foreignId('client_id')->constrained('clientes')->onDelete('cascade');//Duenio de la PC
             $table->string('type');//Tipo de dispositivo (PC, Laptop, Tablet, etc.)
             $table->string('brand');//Marca del dispositivo
             $table->string('model');//Modelo del dispositivo

@@ -26,10 +26,10 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:50',
+            'nombre' => 'required|string|max:255',
+            'telefono' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:255',
-            'address' => 'nullable|string|max:255',
+            'direccion' => 'nullable|string|max:255',
         ]);
 
         $client = Client::create($validated);
