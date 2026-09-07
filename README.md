@@ -42,9 +42,13 @@
 ## 📂 Estructura del Proyecto y Funciones Principales
 
 ### 1. Frontend (`src/components/`)
-* **`ClientDetail.jsx`**
+* **`ClienteFrom.jsx`**
+  * **Función:** Formulario interactivo para el registro y alta de nuevos clientes en el sistema, validando los datos de entrada antes de enviarlos al backend.
+* **`ClienteDetail.jsx`**
   * **Función:** Muestra la ficha detallada de un cliente, sus datos de contacto (teléfono, email), la lista de dispositivos registrados a su nombre y el historial consolidado de todas sus reparaciones.
   * **Cómo funciona:** Realiza una petición asíncrona (`useEffect`) al endpoint del backend utilizando el identificador (`id`) de la URL, procesando y mapeando los dispositivos y reparaciones vinculados.
+* **`RepairForm.jsx`**
+  * **Función:** Interfaz de creación de nuevas órdenes de trabajo o reparaciones, asociando al cliente y al dispositivo ingresado con su respectivo problema inicial y notas.
 * **`RepairDetail.jsx`**
   * **Función:** Panel integral de gestión para una orden de trabajo individual. Permite actualizar en tiempo real el diagnóstico técnico, modificar el costo/presupuesto, cambiar el estado del equipo y generar un comprobante imprimible o exportable a PDF.
   * **Cómo funciona:** Utiliza estados locales para la edición dinámica y peticiones `PUT` al backend. Implementa estilos CSS nativos mediante `@media print` para ocultar elementos de navegación y datos sensibles (contraseñas y números de serie), generando un reporte corporativo limpio con el logo de la empresa.
@@ -59,14 +63,13 @@
 
 ---
 
-## ⚙️ Automatización y Control del Servidor
+## ⚙️ Automatización y Control del Servidor (Scripts)
 
-El proyecto incluye scripts automatizados en la raíz para facilitar la gestión del entorno de desarrollo sin necesidad de configurar y levantar cada servicio de forma manual.
+El proyecto incluye scripts en la raíz para simplificar la inicialización y el apagado seguro de todo el entorno de desarrollo (XAMPP, Backend Laravel y Frontend React).
 
 ### 1. Script de Inicio (`start-techmanager.sh`)
-**¿Para qué sirve?** 
-Se encarga de verificar los permisos del sistema, detener de forma automática cualquier servicio que pueda entrar en conflicto (como instancias previas de Apache o MySQL del sistema operativo), comprobar que los puertos necesarios se encuentren libres, iniciar el servidor XAMPP, y poner en marcha de manera concurrente tanto el backend de Laravel (en el puerto `8000`) como el frontend de React con Vite (en el puerto `5173`), registrando sus identificadores de proceso (*PIDs*) y almacenando la actividad en archivos de registro (*logs*).
-
+* **¿Qué hace y cómo funciona?** 
+  Verifica los permisos de superusuario, detiene de forma automática cualquier servicio del sistema que pueda entrar en conflicto (como Apache o MySQL nativos), comprueba la disponibilidad de los puertos necesarios, inicia los servicios de XAMPP y levanta en segundo plano tanto la API de Laravel (en el puerto `8000`) como el servidor de desarrollo de Vite (en el puerto `5173`), guardando sus registros de actividad y identificadores de proceso.
 * **Cómo se ejecuta:**
   ```bash
   ./start-techmanager.sh
