@@ -74,15 +74,17 @@ El proyecto incluye scripts en la raíz para simplificar la inicialización y el
   ```bash
   ./start-techmanager.sh
 
-2. Script de Apagado (stop-techmanager.sh)
-¿Qué hace y cómo funciona?
+### 2. Script de Apagado (stop-techmanager.sh)
+* **¿Qué hace y cómo funciona?** 
 Lee los archivos de control de procesos generados al iniciar, detiene limpiamente las instancias en ejecución de Laravel y React/Vite de forma segura y procede a detener por completo los servicios de XAMPP.
 
-Cómo se ejecuta:
+**Cómo se ejecuta:**
 
-Bash
+bash
 ./stop-techmanager.sh
-💡 Uso del Sistema
+
+
+### Uso del Sistema
 Ejecuta el script de inicio (./start-techmanager.sh) para encender todo el entorno de desarrollo automáticamente.
 
 Ingresa a la interfaz web desde tu navegador en http://127.0.0.1:5173.
@@ -95,3 +97,6 @@ Al finalizar la jornada de trabajo, ejecuta el script de apagado (./stop-techman
 
 
 
+
+
+dasdasd
