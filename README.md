@@ -78,11 +78,10 @@ El proyecto incluye scripts en la raíz para simplificar la inicialización y el
 * **¿Qué hace y cómo funciona?** 
 Lee los archivos de control de procesos generados al iniciar, detiene limpiamente las instancias en ejecución de Laravel y React/Vite de forma segura y procede a detener por completo los servicios de XAMPP.
 
-**Cómo se ejecuta:**
+* **Cómo se ejecuta:**
 
-bash
-./stop-techmanager.sh
-
+  ```bash
+  ./stop-techmanager.sh
 
 ### Uso del Sistema
 Ejecuta el script de inicio (./start-techmanager.sh) para encender todo el entorno de desarrollo automáticamente.
