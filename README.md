@@ -32,10 +32,10 @@
 * **Tailwind CSS:** Framework de estilos CSS utilitario enfocado en un diseño moderno, responsivo y con modo oscuro integrado.
 * **Axios:** Cliente HTTP optimizado para la comunicación asíncrona con la API REST del backend.
 
-### Backend
+### Backend y Entorno
 * **Laravel 10+ (PHP):** Framework backend robusto para estructurar la API REST y gestionar la lógica de negocio de manera segura.
 * **Eloquent ORM:** Mapeo objeto-relacional para el manejo eficiente de bases de datos relacionales y la asociación limpia entre modelos (*Clientes*, *Dispositivos*, *Reparaciones*).
-* **Laravel Sanctum / CORS:** Mecanismos de seguridad para gestionar peticiones seguras y control de accesos cruzados.
+* **XAMPP (MySQL / Apache):** Entorno local para el servicio de base de datos relacional y gestión de puertos locales.
 
 ---
 
@@ -59,32 +59,14 @@
 
 ---
 
-## ⚙️ Guía de Instalación y Scripts de Ejecución
+## ⚙️ Automatización y Control del Servidor
 
-### Requisitos Previos
-* Node.js y npm instalados en el sistema.
-* PHP (versión 8.2 o superior) y Composer.
-* Servidor de base de datos compatible (MySQL o SQLite).
+El proyecto incluye scripts automatizados en la raíz para facilitar la gestión del entorno de desarrollo sin necesidad de configurar y levantar cada servicio de forma manual.
 
----
+### 1. Script de Inicio (`start-techmanager.sh`)
+**¿Para qué sirve?** 
+Se encarga de verificar los permisos del sistema, detener de forma automática cualquier servicio que pueda entrar en conflicto (como instancias previas de Apache o MySQL del sistema operativo), comprobar que los puertos necesarios se encuentren libres, iniciar el servidor XAMPP, y poner en marcha de manera concurrente tanto el backend de Laravel (en el puerto `8000`) como el frontend de React con Vite (en el puerto `5173`), registrando sus identificadores de proceso (*PIDs*) y almacenando la actividad en archivos de registro (*logs*).
 
-### 1. Configuración del Backend (Laravel)
-
-Abre una terminal y ejecuta los siguientes comandos para levantar la API:
-
-```bash
-# Entrar a la carpeta del servidor
-cd backend
-
-# Instalar dependencias de PHP
-composer install
-
-# Configurar el entorno (duplicar el archivo de ejemplo y generar la llave de seguridad)
-cp .env.example .env
-php artisan key:generate
-
-# Configura las credenciales de tu base de datos en el archivo .env creado, luego ejecuta:
-php artisan migrate
-
-# Levantar el servidor de desarrollo de la API
-php artisan serve
+* **Cómo se ejecuta:**
+  ```bash
+  ./start-techmanager.sh
