@@ -28,9 +28,10 @@ class RepairController extends Controller
         $request->validate([
             'client_id'           => 'required|exists:clientes,id', 
             'device_id'           => 'nullable|exists:devices,id',
-            'type'                => 'required|string|max:255',
-            'brand'               => 'required|string|max:255',
-            'model'               => 'required|string|max:255',
+            // Solo obligatorios si NO viene un device_id existente
+            'type'                => 'required_without:device_id|nullable|string|max:255',
+            'brand'               => 'required_without:device_id|nullable|string|max:255',
+            'model'               => 'required_without:device_id|nullable|string|max:255',
             'serial_number'       => 'nullable|string|max:255',
             'password_device'     => 'nullable|string|max:255',
             'accesories'          => 'nullable|string|max:255',
@@ -64,8 +65,9 @@ class RepairController extends Controller
             $repair = Repair::create([
                 'device_id'           => $device->id,
                 'problem_description' => $request->problem_description,
+                'diagnostic'          => $request->diagnostic, // <--- Añadido si lo usas
                 'estimasted_cost'     => $request->estimasted_cost,
-                'status'              => 'Ingresado', // Estado inicial por defecto
+                'status'              => $request->status ?? 'Ingresado', // <--- Toma el del form o por defecto
             ]);
 
             DB::commit();
@@ -84,11 +86,19 @@ class RepairController extends Controller
         }
     }
 
-    public function show(string $id)
+    // Mostrar una reparación específica con su dispositivo y cliente
+    public function show($id)
     {
-        //
-    }
+        $repair = Repair::with('device.client')->find($id);
 
+        if (!$repair) {
+            return response()->json([
+                'error' => 'Reparación no encontrada'
+            ], 404);
+        }
+
+        return response()->json($repair, 200);
+    }
     //Actualizar el estado o diagnostico de una reparación
     public function update(Request $request, string $id)
     {

@@ -4,6 +4,8 @@ import { Routes, Route, Link } from 'react-router-dom';
 import App from '../App';
 import ClienteForm from '../components/ClienteForm';
 import RepairForm from '../components/RepairForm';
+import RepairDetail from '../components/RepairDetail'; // Nueva vista de detalle de reparación
+import ClientDetail from '../components/ClientDetail';   // Nueva vista de detalle de cliente
 
 export default function AppRouter() {
   return (
@@ -11,10 +13,10 @@ export default function AppRouter() {
       <Route path="/" element={<App />} />
       
       <Route path="/nuevo-cliente" element={
-        <div className="p-8 bg-gray-50 min-h-screen">
+        <div className="p-8 bg-[#121417] min-h-screen text-slate-300">
           <Link 
             to="/" 
-            className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 font-semibold px-4 py-2 rounded-full border border-blue-200 hover:bg-blue-100 transition shadow-sm mb-6"
+            className="inline-flex items-center gap-2 bg-[#181c23] text-emerald-400 font-semibold px-4 py-2 rounded-full border border-slate-800 hover:bg-[#1e232d] transition shadow-sm mb-6"
           >
             &larr; Volver al inicio
           </Link>
@@ -23,14 +25,28 @@ export default function AppRouter() {
       } />
 
       <Route path="/nuevo-equipo" element={
-        <div className="p-8 bg-gray-50 min-h-screen">
+        <div className="p-8 bg-[#121417] min-h-screen text-slate-300">
           <Link 
             to="/" 
-            className="inline-flex items-center gap-2 bg-green-50 text-green-700 font-semibold px-4 py-2 rounded-full border border-green-200 hover:bg-green-100 transition shadow-sm mb-6"
+            className="inline-flex items-center gap-2 bg-[#181c23] text-emerald-400 font-semibold px-4 py-2 rounded-full border border-slate-800 hover:bg-[#1e232d] transition shadow-sm mb-6"
           >
             &larr; Volver al inicio
           </Link>
           <RepairForm />
+        </div>
+      } />
+
+      {/* NUEVA RUTA: Detalle de Reparación */}
+      <Route path="/reparacion/:id" element={
+        <div className="p-8 bg-[#121417] min-h-screen text-slate-300">
+          <RepairDetail />
+        </div>
+      } />
+
+      {/* NUEVA RUTA: Detalle de Cliente */}
+      <Route path="/cliente/:id" element={
+        <div className="p-8 bg-[#121417] min-h-screen text-slate-300">
+          <ClientDetail />
         </div>
       } />
     </Routes>

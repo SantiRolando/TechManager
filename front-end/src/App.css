@@ -181,4 +181,12 @@
     right: 0;
     border-right-color: var(--border);
   }
+  
+  /* src/index.css (o tu archivo CSS principal) */
+body {
+  background-color: #121417 !important;
+  color: #cbd5e1 !important;
+}
+
+
 }
