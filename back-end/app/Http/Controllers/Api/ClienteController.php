@@ -40,10 +40,10 @@ class ClienteController extends Controller
         ], 201);
     }
 
-    //Ver a un Cliente especifico con sus equipos
+   // Ver a un Cliente específico con sus equipos y las reparaciones de cada uno
     public function show(string $id)
     {
-        $client = Client::with('devices')->findOrFail($id);
+        $client = Client::with('devices.repairs')->findOrFail($id);
 
         return response()->json($client);
     }
@@ -63,4 +63,32 @@ class ClienteController extends Controller
     {
         //
     }
+
+    // Obtener los dispositivos de un cliente específico
+    public function devices($id)
+    {
+        $cliente = Client::find($id);
+
+        if (!$cliente) {
+            return response()->json(['error' => 'Cliente no encontrado'], 404);
+        }
+
+        return response()->json($cliente->devices);
+    }
+
+    // Mostrar la información de un cliente específico con sus dispositivos
+    public function showbydevice($id)
+    {
+        $cliente = Client::with('devices')->find($id);
+
+        if (!$cliente) {
+            return response()->json([
+                'error' => 'Cliente no encontrado'
+            ], 404);
+        }
+
+        return response()->json($cliente, 200);
+    }
+
+
 }

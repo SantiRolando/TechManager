@@ -2,18 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    // Si tu tabla en la base de datos se llama "clientes", indícalo aquí:
-    protected $table = 'clientes';
+    use HasFactory;
 
-    // Agrega los campos que permites guardar de forma masiva:
+    protected $table = 'clientes'; // O 'clients' según tu base de datos
+
     protected $fillable = [
         'nombre',
         'email',
         'telefono',
-        'direccion'
+        'direccion',
     ];
+
+    // Un cliente tiene muchos dispositivos
+    public function devices()
+    {
+        return $this->hasMany(Device::class, 'client_id');
+    }
 }
